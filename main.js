@@ -2,6 +2,7 @@ let waterHeight = 0;
 let milkHeight = 0;
 let waterAmount;
 let time;
+let coffeHeight = 10;
 for(let i = 0; i < 3; i++){
     document.getElementById(`display`).innerHTML = `
     <div class="main_welcome" id="welcome">Welcome!</div>
@@ -66,8 +67,17 @@ class CoffeMachine{
                     time--;
                     document.getElementById(`display`).innerHTML = `
                     <div class="main_time">Time: ${time}</div>
-                    
                     `;
+                    if(coffeHeight < 45){
+                        coffeHeight++;
+                        console.log(coffeHeight)
+                        setTimeout(() => {
+                            
+                            document.getElementById('coffe').style.transition = 2 + 's'
+                            document.getElementById('coffe').style.height = coffeHeight + 'px'
+                        }, 35000);
+                    }
+                    
                 }
                 else if(time === 0){
                     
@@ -76,17 +86,20 @@ class CoffeMachine{
                     <div class="main_end" id="end">Yours coffe are ready!</div>
                     <div class="main_row" id="row1">
                         <button class="main_version" id="version1">Coffe</button>
-                        <button class="main_version"  id="version2">Coffe</button>
+                        <button class="main_version" id="version2">Coffe</button>
                     </div>
                     <div class="main_row" id="row2">
                         <button class="main_version" id="version3">Coffe</button>
-                        <button class="main_version"  id="version4">Coffe</button>
+                        <button class="main_version" id="version4">Coffe</button>
                     </div>
                     `;
+                    document.getElementById('coffe').style.display = 'none'
+                    
                     document.getElementById('welcome').style.display = 'none';
                     document.getElementById('row1').style.display = 'none';
                     document.getElementById('row2').style.display = 'none';
                     document.getElementById('end').style.display = 'flex';
+                    
                     clearInterval(interval)
                 }
             }, 1000);    
